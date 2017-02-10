@@ -125,7 +125,7 @@ for r in range(1,999999):
                 res = request.urlopen(req)
                 encoding = res.headers.get_content_charset()
                 obj = json.loads(res.read().decode(encoding))
-                if not obj['dancibility']:
+                if not obj['danceability']:
                     print('Although song was in database, there is no energy and danceability data.  Using standard assumptions for this track.')
                     std_assumptions = 1
     
