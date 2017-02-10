@@ -84,7 +84,6 @@ for r in range(1,999999):
         track = obj['currentTrack']['title']
         artist = obj['currentTrack']['artist'] 	
         elapsedtime = obj['elapsedTime']
-        playing = obj['playerState']
 
         if track == currenttrack:
             """
