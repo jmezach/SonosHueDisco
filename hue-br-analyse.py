@@ -34,7 +34,8 @@ zone = 'Woonkamer'
 my_list = ['2', '3', '4']
 sonosinfo = 'http://localhost:5005/'
 hue_bridge = 'http://192.168.1.73/api/oy5fxii4S2OzWkhS6g86Hs-UHh6Zn175vRQv80RG/'
-spotify_oauthtoken = 'BQBQ2efptb4gIHJD3NZdkZ2ldHPlFq39-nZCwSs9DDq4O1crd0X3nyHBpwLHGdj6g25PhUbM05Yo15LLWkwov5b9KyXBmtvp-YaCAMfSKZWc0vMHXKIrSp-ntRWjZK8IrIz9etOEIZY'
+spotify_clientid = 'a4a437a7dba94c4eb8b3b5b6bea53dd9'
+spotify_clientsecret = '2d5b9d2f23e0436190c156348a3e16d7'
 
 """
 MAIN PROGRAM BELOW, YOU DON'T NEED TO CHANGE ANYTHING FROM HERE
@@ -50,6 +51,7 @@ sat = 100
 tt = 10
 trackfound = 1
 std_assumptions = 0
+bearer_token = 'unknown'
 
 for r in range(1,999999):
     
@@ -121,8 +123,14 @@ for r in range(1,999999):
                 print(requeststring)
                 """
                 req = request.Request(requeststring)
-                req.add_header('Authorization', 'Bearer ' + spotify_oauthtoken)
-                res = request.urlopen(req)
+                req.add_header('Authorization', 'Bearer ' + bearer_token)
+                
+                try:
+                    res = request.urlopen(req)
+                except urllib.HTTPError, e:
+                    if (e.code == 401):
+                        print('Unauthorized')
+                
                 encoding = res.headers.get_content_charset()
                 obj = json.loads(res.read().decode(encoding))
                 if not obj['danceability']:
