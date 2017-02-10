@@ -34,7 +34,7 @@ zone = 'Woonkamer'
 my_list = ['2', '3', '4']
 sonosinfo = 'http://localhost:5005/'
 hue_bridge = 'http://192.168.1.73/api/oy5fxii4S2OzWkhS6g86Hs-UHh6Zn175vRQv80RG/'
-echonest_apikey = 'jAXrABgbvx48unLVI79N'
+spotify_oauthtoken = 'BQBQ2efptb4gIHJD3NZdkZ2ldHPlFq39-nZCwSs9DDq4O1crd0X3nyHBpwLHGdj6g25PhUbM05Yo15LLWkwov5b9KyXBmtvp-YaCAMfSKZWc0vMHXKIrSp-ntRWjZK8IrIz9etOEIZY'
 
 """
 MAIN PROGRAM BELOW, YOU DON'T NEED TO CHANGE ANYTHING FROM HERE
@@ -93,7 +93,7 @@ for r in range(1,999999):
             std_assumptions = 0
             print('This is a new track!')
             print('Now playing : ' + track + ' by '+ artist + ".")
-            requeststring = 'http://developer.echonest.com/api/v4/song/search?api_key=' + echonest_apikey + '&format=json&artist=' + urllib.parse.quote(artist) + '&title=' + urllib.parse.quote(track)
+            requeststring = 'https://api.spotify.com/v1/search?q=artist:' + urllib.parse.quote(artist) + '%20title:' + urllib.parse.quote(track) + '&type=track'
             """
             print(requeststring)
             """
@@ -103,12 +103,12 @@ for r in range(1,999999):
             """
             print(obj)
             """
-            if not obj['response']['songs']:
+            if not obj['tracks']['items']:
                 std_assumptions = 1            
                 print('Song not in database - using standard assumptions')
             
             if std_assumptions == 0:
-                songid = obj['response']['songs'][0]['id']
+                songid = obj['tracks']['items'][0]['id']
 
                 """
                 print(songid)
