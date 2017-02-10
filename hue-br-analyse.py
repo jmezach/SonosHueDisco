@@ -1,5 +1,5 @@
 import urllib
-from urllib import request 
+from urllib import request, HTTPError 
 from random import randint 
 import base64,requests,json,time,datetime
 
@@ -127,7 +127,7 @@ for r in range(1,999999):
                 
                 try:
                     res = request.urlopen(req)
-                except urllib.HTTPError as e:
+                except HTTPError as e:
                     if (e.code == 401):
                         print('Unauthorized')
                 
