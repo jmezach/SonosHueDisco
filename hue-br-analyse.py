@@ -127,7 +127,7 @@ for r in range(1,999999):
                 
                 try:
                     res = request.urlopen(req)
-                except urllib.HTTPError, e:
+                except urllib.HTTPError as e:
                     if (e.code == 401):
                         print('Unauthorized')
                 
