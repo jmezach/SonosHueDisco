@@ -130,7 +130,7 @@ for r in range(1,999999):
                 except urllib.error.HTTPError as e:
                     if (e.code == 401):
                         authreq = request.Request('https://accounts.spotify.com/api/token')
-                        authreq.add_header('Authorization', 'Basic ' + base64.b64encode(spotify_clientid + ':' + spotify_clientsecret))
+                        authreq.add_header('Authorization', 'Basic ' + base64.b64encode(bytes(spotify_clientid + ':' + spotify_clientsecret, 'utf-8')))
                         data = { 'grant_type': 'client_credentials' }
                         data = bytes( urllib.parse.urlencode(data).encode())
                         authres = request.urlopen(authreq, data)
