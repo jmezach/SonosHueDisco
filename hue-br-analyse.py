@@ -64,7 +64,9 @@ for r in range(1,999999):
         encoding = req.headers.get_content_charset()
         obj = json.loads(req.read().decode(encoding))
         
+        """
         print(json.dumps(obj,indent=4))
+        """
         
         if obj['playbackState'] == 'PAUSED_PLAYBACK' or obj['playbackState'] == 'STOPPED':
             print('Player has stopped playing.  Returning lights to white and exiting program.')
@@ -118,10 +120,11 @@ for r in range(1,999999):
                 """
                 print(requeststring)
                 """
-                req = request.urlopen(requeststring)
+                req = request.Request(requeststring)
                 req.add_header('Authorization', 'Bearer ' + spotify_oauthtoken)
-                encoding = req.headers.get_content_charset()
-                obj = json.loads(req.read().decode(encoding))
+                res = request.urlopen(req)
+                encoding = res.headers.get_content_charset()
+                obj = json.loads(res.read().decode(encoding))
                 if not obj['dancibility']:
                     print('Although song was in database, there is no energy and danceability data.  Using standard assumptions for this track.')
                     std_assumptions = 1
