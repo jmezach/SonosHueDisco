@@ -1,0 +1,33 @@
+{
+    "volume": 26,
+    "mute": false,
+    "trackNo": 1,
+    "elapsedTimeFormatted": "00:01:16",
+    "currentTrack": {
+        "uri": "x-file-cifs://diskstation/music/K/Kasabian/Velociraptor!%20%5b2011%5d/Kasabian%20-%20Velociraptor!%20-%2001%20-%20Let's%20Roll%20Just%20Like%20We%20Used%20To.mp3",
+        "duration": 287,
+        "album": "Velociraptor!",
+        "stationName": "",
+        "type": "track",
+        "title": "Let's Roll Just Like We Used To",
+        "artist": "Kasabian",
+        "albumArtUri": "/getaa?u=x-file-cifs%3a%2f%2fdiskstation%2fmusic%2fK%2fKasabian%2fVelociraptor!%2520%255b2011%255d%2fKasabian%2520-%2520Velociraptor!%2520-%252001%2520-%2520Let's%2520Roll%2520Just%2520Like%2520We%2520Used%2520To.mp3&v=69",
+        "absoluteAlbumArtUri": "http://192.168.1.54:1400/getaa?u=x-file-cifs%3a%2f%2fdiskstation%2fmusic%2fK%2fKasabian%2fVelociraptor!%2520%255b2011%255d%2fKasabian%2520-%2520Velociraptor!%2520-%252001%2520-%2520Let's%2520Roll%2520Just%2520Like%2520We%2520Used%2520To.mp3&v=69"
+    },
+    "nextTrack": {
+        "uri": "x-file-cifs://diskstation/music/K/Kasabian/Velociraptor!%20%5b2011%5d/Kasabian%20-%20Velociraptor!%20-%2002%20-%20Days%20Are%20Forgotten.mp3",
+        "duration": 302,
+        "album": "Velociraptor!",
+        "title": "Days Are Forgotten",
+        "artist": "Kasabian",
+        "albumArtUri": "/getaa?u=x-file-cifs%3a%2f%2fdiskstation%2fmusic%2fK%2fKasabian%2fVelociraptor!%2520%255b2011%255d%2fKasabian%2520-%2520Velociraptor!%2520-%252002%2520-%2520Days%2520Are%2520Forgotten.mp3&v=69",
+        "absoluteAlbumArtUri": "http://192.168.1.54:1400/getaa?u=x-file-cifs%3a%2f%2fdiskstation%2fmusic%2fK%2fKasabian%2fVelociraptor!%2520%255b2011%255d%2fKasabian%2520-%2520Velociraptor!%2520-%252002%2520-%2520Days%2520Are%2520Forgotten.mp3&v=69"
+    },
+    "elapsedTime": 76,
+    "playbackState": "PLAYING",
+    "playMode": {
+        "shuffle": false,
+        "repeat": "none",
+        "crossfade": false
+    }
+}
