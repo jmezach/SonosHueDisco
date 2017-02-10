@@ -114,14 +114,15 @@ for r in range(1,999999):
                 print(songid)
                 """
 
-                requeststring = 'http://developer.echonest.com/api/v4/song/profile?api_key=' + echonest_apikey + '&id=' + songid + '&bucket=audio_summary'
+                requeststring = 'https://api.spotify.com/v1/audio-features/' + songid
                 """
                 print(requeststring)
                 """
                 req = request.urlopen(requeststring)
+                req.add_header('Authorization', 'Bearer ' + spotify_oauthtoken)
                 encoding = req.headers.get_content_charset()
                 obj = json.loads(req.read().decode(encoding))
-                if not obj['response']['songs'][0]['audio_summary']:
+                if not obj['dancibility']:
                     print('Although song was in database, there is no energy and danceability data.  Using standard assumptions for this track.')
                     std_assumptions = 1
     
@@ -129,9 +130,9 @@ for r in range(1,999999):
 
                     print(obj)
         
-                    dancepercent = int((obj['response']['songs'][0]['audio_summary']['danceability'])*100)
-                    energypercent = int((obj['response']['songs'][0]['audio_summary']['energy'])*100)
-                    pulserate = obj['response']['songs'][0]['audio_summary']['tempo']
+                    dancepercent = int((obj['danceability'])*100)
+                    energypercent = int((obj['energy'])*100)
+                    pulserate = obj['tempo']
                     print('Danceability is '+str(dancepercent) + '% and energy is ' + str(energypercent) + '% with a tempo of '+str(pulserate) +'bpm.')
                     currenttrack = track
 
