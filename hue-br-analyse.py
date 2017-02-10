@@ -135,7 +135,7 @@ for r in range(1,999999):
                         body = { 'grant_type': 'client_credentials' }
                         body = bytes( urllib.parse.urlencode(body).encode())
                         authres = request.urlopen(authreq, body)
-                        encoding = authres.headers.get_content_charset()
+                        encoding = authreq.headers.get_content_charset()
                         token = json.loads(authres.read().decode(encoding))
                         bearer_token = token['access_token']
                         req = request.Request(requeststring)
