@@ -133,8 +133,8 @@ for r in range(1,999999):
                         authbasic = spotify_clientid + ':' + spotify_clientsecret
                         authreq.add_header('Authorization', 'Basic ' + base64.b64encode(authbasic.encode()).decode())
                         body = { 'grant_type': 'client_credentials' }
-                        data = bytes( urllib.parse.urlencode(data).encode())
-                        authres = request.urlopen(authreq, data)
+                        body = bytes( urllib.parse.urlencode(body).encode())
+                        authres = request.urlopen(authreq, body)
                         encoding = authres.headers.get_content_charset()
                         token = json.loads(authres.read().decode(encoding))
                         bearer_token = token['access_token']
