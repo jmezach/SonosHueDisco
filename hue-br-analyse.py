@@ -137,6 +137,7 @@ for r in range(1,999999):
                         body = bytes( urllib.parse.urlencode(body).encode())
                         authres = request.urlopen(authreq, body)
                         encoding = authres.headers.get_content_charset()
+                        print('Got encoding: ' + encoding)
                         token = json.loads(authres.read().decode(encoding))
                         bearer_token = token['access_token']
                         req = request.Request(requeststring)
