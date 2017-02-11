@@ -129,6 +129,7 @@ for r in range(1,999999):
                     res = request.urlopen(req)
                 except urllib.error.HTTPError as e:
                     if (e.code == 401):
+                        print('Unauthorized. Retrieving new token...')
                         authreq = request.Request('https://accounts.spotify.com/api/token')
                         authbasic = spotify_clientid + ':' + spotify_clientsecret
                         authreq.add_header('Authorization', 'Basic ' + base64.b64encode(authbasic.encode()).decode())
@@ -141,6 +142,7 @@ for r in range(1,999999):
                         req = request.Request(requeststring)
                         req.add_header('Authorization', 'Bearer ' + bearer_token)
                         res = request.urlopen(req)
+                        print('Got new token, continuing...')
                 
                 encoding = res.headers.get_content_charset()
                 obj = json.loads(res.read().decode(encoding))
@@ -233,7 +235,6 @@ for r in range(1,999999):
                 min_bri = 200
                 off_chance = 600
 
-            print('Changing hue lights now.')
             my_list_len = len(my_list)
             for i in range(0,my_list_len):
                 hue = randint(0,65000)
@@ -250,7 +251,6 @@ for r in range(1,999999):
             secs_waited = 0
          
         if secs_waited >= secs_to_wait:
-            print('Changing hue lights now.')
             my_list_len = len(my_list)
             for i in range(0,my_list_len):
                 hue = randint(0,65000)
