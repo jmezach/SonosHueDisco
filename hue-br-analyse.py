@@ -101,9 +101,29 @@ for r in range(1,999999):
             """
             print(requeststring)
             """
-            req = request.urlopen(requeststring)
-            encoding = req.headers.get_content_charset()
-            obj = json.loads(req.read().decode(encoding))
+            req = request.Request(requeststring)
+            req.add_header('Authorization', 'Bearer ' + bearer_token)
+
+            try:
+                res = request.urlopen(req)
+            except urllib.error.HTTPError as e:
+                if (e.code == 401):
+                    print('Unauthorized. Retrieving new token...')
+                    authreq = request.Request('https://accounts.spotify.com/api/token')
+                    authbasic = spotify_clientid + ':' + spotify_clientsecret
+                    authreq.add_header('Authorization', 'Basic ' + base64.b64encode(authbasic.encode()).decode())
+                    body = { 'grant_type': 'client_credentials' }
+                    body = bytes( urllib.parse.urlencode(body).encode())
+                    authres = request.urlopen(authreq, body)
+                    token = json.loads(authres.read().decode('utf-8'))
+                    bearer_token = token['access_token']
+                    req = request.Request(requeststring)
+                    req.add_header('Authorization', 'Bearer ' + bearer_token)
+                    res = request.urlopen(req)
+                    print('Got new token, continuing...')
+            
+            encoding = res.headers.get_content_charset()
+            obj = json.loads(res.read().decode(encoding))
             """
             print(obj)
             """
